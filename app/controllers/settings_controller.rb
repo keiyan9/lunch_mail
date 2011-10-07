@@ -44,7 +44,6 @@ class SettingsController < ApplicationController
 
     respond_to do |format|
       if @setting.save
-        Notifier.deliver_notice_email(current_user, "New Setting was registered.")
         format.html { redirect_to(@setting, :notice => 'Setting was successfully created.') }
         format.xml  { render :xml => @setting, :status => :created, :location => @setting }
       else

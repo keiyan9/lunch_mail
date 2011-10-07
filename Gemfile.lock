@@ -66,6 +66,10 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    hashie (1.1.0)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     i18n (0.5.0)
     jquery-rails (1.0.14)
       railties (~> 3.0)
@@ -78,6 +82,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    multi_json (1.0.3)
+    multi_xml (0.4.1)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
     polyglot (0.3.2)
@@ -142,6 +148,8 @@ DEPENDENCIES
   devise
   haml (>= 3.0.0)
   haml-rails
+  hashie
+  httparty
   jquery-rails
   rails (= 3.0.10)
   rspec-rails (>= 2.0.1)
