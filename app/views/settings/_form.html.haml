@@ -11,6 +11,6 @@
     = f.text_field :area
   .field
     = f.label :notice_at
-    = f.datetime_select :notice_at
+    = f.datetime_select :notice_at, :use_month_numbers => true
   .actions
     = f.submit 'Save'
