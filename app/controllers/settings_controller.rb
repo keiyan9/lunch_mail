@@ -1,14 +1,4 @@
 class SettingsController < ApplicationController
-  # GET /settings
-  # GET /settings.xml
-  def index
-    @settings = Setting.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @settings }
-    end
-  end
 
   # GET /settings/1
   # GET /settings/1.xml
@@ -24,7 +14,7 @@ class SettingsController < ApplicationController
   # GET /settings/new
   # GET /settings/new.xml
   def new
-    @setting = Setting.new
+    @setting = current_user.setting || Setting.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +31,9 @@ class SettingsController < ApplicationController
   # POST /settings.xml
   def create
     @setting = Setting.new(params[:setting])
+    @setting.user_id = current_user.id
+    Time.zone = "Tokyo"
+    @setting.notice_at = Time.zone.local(2011,1,1,params[:setting][:"notice_at(4i)"], params[:setting][:"notice_at(5i)"])
 
     respond_to do |format|
       if @setting.save
@@ -69,15 +62,4 @@ class SettingsController < ApplicationController
     end
   end
 
-  # DELETE /settings/1
-  # DELETE /settings/1.xml
-  def destroy
-    @setting = Setting.find(params[:id])
-    @setting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(settings_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

@@ -17,7 +17,7 @@ private
   end
 
   def self.original_url
-    "http://w002.tenkiapi.jp/0f469447727bf225b02f398d69eb8e7b41b5ed35/umbrella/"
+    "http://api.gnavi.co.jp/ver1/RestSearchAPI/"
   end
 
 end
