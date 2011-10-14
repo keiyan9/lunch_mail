@@ -3,6 +3,12 @@ Casamotta::Application.routes.draw do
 
   devise_for :users
 
+  resource :kicks, :only => %w() do
+    member do
+      get 'execute'
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
