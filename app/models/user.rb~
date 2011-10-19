@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   def self.send_notifications
     self.select_target_users.each do |user|
       response = ApiAccess.api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :address => user.setting.area})
-      Notifier.notice_email(user,response)
-      Notifier.deliver_notice_email(user,response)
-      logger.info "[Mail] send email to #{user.email}"
+     p Notifier.notice_email(user,response)
+#      Notifier.deliver_notice_email(user,response)
+#      logger.info "[Mail] send email to #{user.email}"
     end
   end
 
