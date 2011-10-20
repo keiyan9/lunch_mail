@@ -32,8 +32,7 @@ class SettingsController < ApplicationController
   def create
     @setting = Setting.new(params[:setting])
     @setting.user_id = current_user.id
-    Time.zone = "Tokyo"
-    @setting.notice_at = Time.zone.local(2011,1,1,params[:setting][:"notice_at(4i)"], params[:setting][:"notice_at(5i)"])
+    @setting.notice_at = Time.local(2011,1,1,params[:setting][:"notice_at(4i)"], params[:setting][:"notice_at(5i)"])
 
     respond_to do |format|
       if @setting.save
