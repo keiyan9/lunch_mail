@@ -12,9 +12,10 @@ class User < ActiveRecord::Base
 
   def self.send_notifications
     self.select_target_users.each do |user|
-      response = ApiAccess.api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :address => user.setting.area})
-      Notifier.notice_email(user,response)
-      Notifier.deliver_notice_email(user,response)
+      response_geo = ApiAccess.geo_api_get({:q => user.setting.area})
+      response_gnavi = ApiAccess.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999})
+      Notifier.notice_email(user,response_gnavi)
+      Notifier.deliver_notice_email(user,response_gnavi)
       logger.info "[Mail] send email to #{user.email}"
     end
   end
