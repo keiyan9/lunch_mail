@@ -39,6 +39,9 @@ group :development, :test do
   gem 'web-app-theme', '~> 0.6.2'
 end
 
+group :development do
+  gem 'erb2haml'
+end
 
 gem "devise"
 gem "haml", ">= 3.0.0"

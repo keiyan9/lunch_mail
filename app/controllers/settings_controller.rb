@@ -3,18 +3,17 @@ class SettingsController < ApplicationController
   # GET /settings/1
   # GET /settings/1.xml
   def show
-    @setting = Setting.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @setting }
+    if current_user.setting
+      @setting = current_user.setting
+    else
+      redirect_to new_setting_path
     end
   end
 
   # GET /settings/new
   # GET /settings/new.xml
   def new
-    @setting = current_user.setting || Setting.new
+    @setting = Setting.new
 
     respond_to do |format|
       format.html # new.html.erb

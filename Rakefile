@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Casamotta::Application.load_tasks
+LunchMail::Application.load_tasks

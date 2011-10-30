@@ -1,10 +1,14 @@
-%p#notice= notice
+%h1 登録情報
 
 %p
-  %b Area:
+  %b 住所:
   = @setting.area
 %p
-  %b Notice at:
+  %b 通知時刻:
   = @setting.notice_at.strftime("%H:%M")
+%p
+  %b 通知先:
+  = all_notice_points(current_user)
 
-= link_to 'Back', new_setting_path
+= link_to '編集', edit_setting_path(@setting)
+= link_to '通知先の追加', new_setting_notice_point_path(@setting.id)

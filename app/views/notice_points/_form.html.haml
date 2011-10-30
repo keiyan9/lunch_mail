@@ -1,0 +1,14 @@
+= form_for @notice_point, :url => setting_notice_points_path(@notice_point.id) do |f|
+  -if @notice_point.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@notice_point.errors.count, "error")} prohibited this setting from being saved:"
+      %ul
+        - @notice_point.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label "通知先"
+    = f.text_field :email
+
+  .actions
+    = f.submit '登録'

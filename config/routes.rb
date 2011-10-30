@@ -1,5 +1,7 @@
-Casamotta::Application.routes.draw do
-  resources :settings
+LunchMail::Application.routes.draw do
+  resources :settings do
+    resources :notice_points
+  end
 
   devise_for :users
 
@@ -58,7 +60,7 @@ Casamotta::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "settings#new"
+  root :to => "settings#show"
 
   # See how all your routes lay out with "rake routes"
 
