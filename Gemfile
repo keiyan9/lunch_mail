@@ -29,11 +29,16 @@ gem 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :development, :test do
+group :test do
   gem "capybara", :group => [:development, :test]
   gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
   gem "cucumber-rails"
 end
+
+group :development, :test do
+  gem 'web-app-theme', '~> 0.6.2'
+end
+
 
 gem "devise"
 gem "haml", ">= 3.0.0"
@@ -41,4 +46,3 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "httparty"
 gem "hashie"
-gem 'web-app-theme', '~> 0.6.2'
