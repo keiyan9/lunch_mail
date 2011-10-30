@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   def self.select_target_users
     current_time = Time.local(2011,1,1,Time.now.hour,Time.now.min)
-    self.select{|user| user.setting.notice_at > current_time-3.minute && user.setting.notice_at < current_time+3.minute}
+    self.select{|user| user.setting.notice_at > current_time-15.second && user.setting.notice_at < current_time+15.second}
   end
 
 end
