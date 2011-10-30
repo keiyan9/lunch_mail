@@ -41,3 +41,4 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "httparty"
 gem "hashie"
+gem 'web-app-theme', '~> 0.6.2'
