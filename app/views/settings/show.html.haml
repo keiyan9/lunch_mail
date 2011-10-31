@@ -11,7 +11,9 @@
 %p
   %b 通知先
   %br
-  = all_notice_points(current_user)
+  - current_user.notice_points.each do |np|
+    = np.email
+    %br
 
 = link_to '編集', edit_setting_path(@setting)
 = link_to '通知先の追加', new_setting_notice_point_path(@setting.id)
