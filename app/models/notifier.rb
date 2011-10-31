@@ -7,9 +7,7 @@ class Notifier < ActionMailer::Base
     number = shops.response.rest.size
     shop = shops.response.rest[rand(number)]
     body =  "本日のオススメ店は#{shop.name}です！ 店舗URL⇒#{shop.url_mobile}"
-    user.notice_points.each do |np|
-      mail(:to => np.email, :subject => subject, :body => body)
-    end
+    mail(:to => user.email, :subject => subject, :body => body)
   end
 
 end

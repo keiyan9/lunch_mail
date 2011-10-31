@@ -17,9 +17,11 @@ class User < ActiveRecord::Base
       categories = [100, 200, 300, 400]
       response_category = "CTG#{categories[rand(categories.length)]}"
       response_gnavi = ApiAccess.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999, :category_l => response_category})
-      Notifier.notice_email(user,response_gnavi)
-      Notifier.deliver_notice_email(user,response_gnavi)
-      logger.info "[Mail] send email to #{user.email}"
+      user.notice_points.each do |np|
+        Notifier.notice_email(np,response_gnavi)
+        Notifier.deliver_notice_email(np,response_gnavi)
+        logger.info "[Mail] send email to #{np.email}"
+      end
     end
   end
 

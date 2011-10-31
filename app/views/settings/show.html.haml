@@ -1,13 +1,16 @@
 %h1 登録情報
 
 %p
-  %b 住所:
+  %b 住所
+  %br
   = @setting.area
 %p
-  %b 通知時刻:
+  %b 通知時刻
+  %br
   = @setting.notice_at.strftime("%H:%M")
 %p
-  %b 通知先:
+  %b 通知先
+  %br
   = all_notice_points(current_user)
 
 = link_to '編集', edit_setting_path(@setting)
