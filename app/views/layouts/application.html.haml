@@ -14,6 +14,8 @@
           %ul.wat-cf
             %li
               -if current_user
+                = link_to '通知先管理', setting_notice_points_path(@setting)
+                |
                 = link_to 'Sign out', destroy_user_session_path, :method => :delete
         #main-navigation
           %ul.wat-cf
