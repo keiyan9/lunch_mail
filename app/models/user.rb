@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
       response_geo = ApiAccess.geo_api_get({:q => user.setting.area})
       categories = [100, 200, 300, 400]
       np_groups = []
-      user.notice_points.sort_by{ rand }.each_slice(4){ |user_group| np_groups << user_group }
+      user.notice_points.sort_by{ rand }.each_slice(2){ |user_group| np_groups << user_group }
       np_groups.each do |np_group|
         response_category = "CTG#{categories[rand(categories.length)]}"
         response_gnavi = ApiAccess.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999, :category_l => response_category})
