@@ -16,16 +16,16 @@ class User < ActiveRecord::Base
       response_geo = ApiAccess.geo_api_get({:q => user.setting.area})
       categories = [100, 200, 300, 400]
 
-      user.notice_points = user.notice_points.sort_by{ rand }
-      np_count_all = user.notice_points.size
+      notice_users = user.notice_points.sort_by{ rand }
+      np_count_all = notice_users.size
       np_groups = []
       if np_count_all <= 5
-        np_groups = user.notice_points
+        np_groups = notice_users
       else
         cut_point = (( np_count_all / 4 - 3 ) + np_count_all % 4) * 4
         last_point = np_count_all - 1
-        three_groups = user.notice_points.slice!(cut_point..last_point)
-        user.notice_points.each_slice(4){ |four_users_group| np_groups << four_users_group }
+        three_groups = notice_users.slice!(cut_point..last_point)
+        notice_users.each_slice(4){ |four_users_group| np_groups << four_users_group }
         three_groups.each_slice(3){ |three_users_group| np_groups << three_users_group }
       end
 
