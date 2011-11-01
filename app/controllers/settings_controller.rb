@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SettingsController < ApplicationController
 
   # GET /settings/1
@@ -35,7 +36,7 @@ class SettingsController < ApplicationController
 
     respond_to do |format|
       if @setting.save
-        format.html { redirect_to(@setting, :notice => 'Setting was successfully created.') }
+        format.html { redirect_to(@setting, :notice => '登録が完了しました。') }
         format.xml  { render :xml => @setting, :status => :created, :location => @setting }
       else
         format.html { render :action => "new" }
@@ -51,7 +52,7 @@ class SettingsController < ApplicationController
 
     respond_to do |format|
       if @setting.update_attributes(params[:setting])
-        format.html { redirect_to(@setting, :notice => 'Setting was successfully updated.') }
+        format.html { redirect_to(@setting, :notice => '登録情報が更新されました。') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

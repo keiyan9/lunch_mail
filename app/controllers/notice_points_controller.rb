@@ -24,7 +24,7 @@ class NoticePointsController < ApplicationController
     @notice_point.destroy
 
     respond_to do |format|
-      format.html { redirect_to setting_notice_points_path(@setting)}
+      format.html { redirect_to setting_notice_points_path(@setting), :notice => '通知先が削除されました。'}
     end
   end
 end

@@ -2,11 +2,14 @@
 
 %table
   %tr
+    %th 名前
     %th 通知先
     %th
 
   - current_user.notice_points.each do |np|
     %tr
+      %td
+        = np.name
       %td
         = np.email    
         %td

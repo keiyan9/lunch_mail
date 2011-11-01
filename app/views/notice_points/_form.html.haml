@@ -7,8 +7,15 @@
           %li= msg
 
   .field
+    = f.label "名前"
+    %br
+    = f.text_field :name
+
+  .field
     = f.label "通知先"
+    %br
     = f.text_field :email
 
   .actions
+    %br
     = f.submit '登録'

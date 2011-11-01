@@ -13,7 +13,7 @@
         #user-navigation
           %ul.wat-cf
             %li
-              -if current_user
+              -if current_user && current_user.setting
                 = link_to '通知先管理', setting_notice_points_path(@setting)
                 |
                 = link_to 'Sign out', destroy_user_session_path, :method => :delete

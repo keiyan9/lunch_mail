@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
         else
           shop = response_gnavi.response.rest
         end
-        members = np_group.map{ |member| member.email }.join(",")
+        members = np_group.map{ |member| member.name }.join(",")
         np_group.each do |np|
           Notifier.notice_email(np,shop,members)
           Notifier.deliver_notice_email(np,shop,members)
