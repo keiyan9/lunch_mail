@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
       np_groups.each do |np_group|
         response_category = "CTG#{categories[rand(categories.length)]}"
         response_gnavi = ApiAccess.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999, :category_l => response_category})
-        shop_number = response_gnavi.response.rest.size
-        shop = response_gnavi.response.rest[rand(shop_number)]
+        shop_count = response_gnavi.response.rest.size
+        shop = response_gnavi.response.rest[rand(shop_count)]
         np_group.each do |np|
           Notifier.notice_email(np,shop)
           Notifier.deliver_notice_email(np,shop)
@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
   end
 
   def self.select_target_users
-    current_time = Time.local(2011,1,1,Time.now.hour,Time.now.min)
-    self.select{|user| user.setting.notice_at >= current_time-2.second && user.setting.notice_at < current_time+3.second}
+    current_time = Time.local(2011,1,1,Time.now.hour,Time.now.min,Time.now.sec)
+    self.select{|user| user.setting.notice_at >= current_time-7.second && user.setting.notice_at < current_time+8.second}
   end
 
 end
