@@ -22,9 +22,10 @@ class User < ActiveRecord::Base
         response_gnavi = ApiAccess.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999, :category_l => response_category})
         shop_count = response_gnavi.response.rest.size
         shop = response_gnavi.response.rest[rand(shop_count)]
+        members = np_group.map{ |member| member.email }.join(",")
         np_group.each do |np|
-          Notifier.notice_email(np,shop)
-          Notifier.deliver_notice_email(np,shop)
+          Notifier.notice_email(np,shop,members)
+          Notifier.deliver_notice_email(np,shop,members)
           logger.info "[Mail] send email to #{np.email}"
         end
       end
