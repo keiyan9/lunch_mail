@@ -20,8 +20,12 @@ class User < ActiveRecord::Base
       np_groups.each do |np_group|
         response_category = "CTG#{categories[rand(categories.length)]}"
         response_gnavi = ApiAccess.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999, :category_l => response_category})
-        shop_count = response_gnavi.response.rest.size
-        shop = response_gnavi.response.rest[rand(shop_count)]
+        if response_gnavi.response.rest.instance_of?(Array)
+          shop_count = response_gnavi.response.rest.size
+          shop = response_gnavi.response.rest[rand(shop_count)]
+        else
+          shop = response_gnavi.response.rest
+        end
         members = np_group.map{ |member| member.email }.join(",")
         np_group.each do |np|
           Notifier.notice_email(np,shop,members)
