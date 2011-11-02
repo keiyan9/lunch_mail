@@ -1,5 +1,5 @@
 = form_for @setting do |f|
-  -if @setting.errors.any?
+  - if @setting.errors.any?
     #error_explanation
       %h2= "#{pluralize(@setting.errors.count, "error")} prohibited this setting from being saved:"
       %ul
@@ -19,7 +19,10 @@
     %br
     = f.label "通知"
     %br
-    = f.check_box :active
+    - if @setting.active == nil
+      = f.check_box :active, :checked => true
+    - else
+      = f.check_box :active
   .actions
     %br
     = f.submit '登録'
