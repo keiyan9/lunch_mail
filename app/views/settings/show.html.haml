@@ -8,5 +8,8 @@
   %b 通知時刻
   %br
   = @setting.notice_at.strftime("%H:%M")
-
+%p
+  %b 通知
+  %br
+  = @setting.active
 = link_to '編集', edit_setting_path(@setting)
