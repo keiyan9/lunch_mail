@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 class Notifier < ActionMailer::Base
-  default :from => "any_from_address@example.com"
+  default :from => "ランチメール"
 
   def notice_email(user,shop,members)
     subject = "New Notification for you."
     body =  <<"LUNCHMAIL"
 ＜本日のオススメ店＞
-  #{shop.name}
+#{shop.name}
 
 ＜メンバー＞
-  #{members}
+#{members}
 
 ＜店舗URL＞
-  #{shop.url_mobile}
+#{shop.url_mobile}
 LUNCHMAIL
 
     mail(:to => user.email, :subject => subject, :body => body)
