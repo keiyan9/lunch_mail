@@ -6,13 +6,13 @@ class Notifier < ActionMailer::Base
     subject = "New Notification for you."
     body =  <<"LUNCHMAIL"
 ＜本日のオススメ店＞
-#{shop.name}
+  #{shop.name}
 
 ＜メンバー＞
-#{members}
+  #{members}
 
-＜ 店舗URL＞
-#{shop.url_mobile}
+＜店舗URL＞
+  #{shop.url_mobile}
 LUNCHMAIL
 
     mail(:to => user.email, :subject => subject, :body => body)
