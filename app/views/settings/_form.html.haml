@@ -14,7 +14,7 @@
     %br
     = f.label "通知時刻"
     %br
-    = f.datetime_select :notice_at, :discard_year => true, :discard_month => true, :discard_day => true
+    = f.datetime_select :notice_at, :discard_year => true, :discard_month => true, :discard_day => true, :minute_step => 15
   .field
     %br
     = f.label "通知"
