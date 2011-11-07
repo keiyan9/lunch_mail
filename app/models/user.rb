@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
       np_count_all = notice_users.size
       np_groups = []
       if np_count_all <= 5
-        np_groups = notice_users
+        np_groups << notice_users
       else
         cut_point = (( np_count_all / 4 - 3 ) + np_count_all % 4) * 4
         last_point = np_count_all - 1
