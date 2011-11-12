@@ -1,6 +1,6 @@
 .page-header
   %h1 登録内容の変更
 
-= render 'form'
+%p= link_to "<< ホームへ戻る", setting_path(current_user.setting)
 
-= link_to '戻る', setting_path
+= render 'form'
