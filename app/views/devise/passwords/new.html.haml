@@ -1,9 +1,13 @@
-%h2 Forgot your password?
+.page-header
+  %h1 パスワードをお忘れですか？
+
+.nav
 = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
   = devise_error_messages!
-  %div
+  .clearfix
     = f.label :email
-    %br/
-    = f.email_field :email
-  %div= f.submit "Send me reset password instructions"
+    .input
+      = f.email_field :email
+  .actions
+    = f.submit "パスワードをリセットする", :class => "btn primary"
 = render :partial => "devise/shared/links"

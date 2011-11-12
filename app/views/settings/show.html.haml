@@ -1,15 +1,26 @@
-%h1 登録情報
+.page-header
+  %h1 登録情報
 
-%p
-  %b 住所
-  %br
-  = @setting.area
-%p
-  %b 通知時刻
-  %br
-  = @setting.notice_at.strftime("%H:%M")
-%p
-  %b 通知
-  %br
-  = @setting.active
-= link_to '編集', edit_setting_path(@setting)
+%table.bordered-table
+  %tr
+    %th
+      項目
+    %th
+      内容
+
+  %tr
+    %td
+      住所
+    %td 
+      = @setting.area
+  %tr    
+    %td
+      通知時刻
+    %td
+      = @setting.notice_at.strftime("%H:%M")
+  %tr
+    %td
+      通知
+    %td
+      = @setting.active
+= link_to '登録内容を変更する', edit_setting_path(@setting)

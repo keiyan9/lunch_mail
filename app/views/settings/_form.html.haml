@@ -6,23 +6,20 @@
         - @setting.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .clearfix
     = f.label "住所"
-    %br
-    = f.text_field :area
-  .field
-    %br
+    .input
+      = f.text_field :area
+  .clearfix
     = f.label "通知時刻"
-    %br
-    = f.datetime_select :notice_at, :discard_year => true, :discard_month => true, :discard_day => true, :minute_step => 15
-  .field
-    %br
+    .input
+      = f.datetime_select :notice_at, :discard_year => true, :discard_month => true, :discard_day => true, :minute_step => 15
+  .clearfix
     = f.label "通知"
-    %br
-    - if @setting.active == nil
-      = f.check_box :active, :checked => true
-    - else
-      = f.check_box :active
+    .input
+      - if @setting.active == nil
+        = f.check_box :active, :checked => true
+      - else
+        = f.check_box :active
   .actions
-    %br
-    = f.submit '登録'
+    = f.submit :class => "btn primary"
