@@ -22,5 +22,5 @@
     %td
       通知
     %td
-      = @setting.active
+      = @setting.active ? "通知されます" : "通知されません"
 = link_to '登録内容を変更する', edit_setting_path(@setting)

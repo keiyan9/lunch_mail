@@ -5,7 +5,8 @@
       %ul
         - @setting.errors.full_messages.each do |msg|
           %li= msg
-
+  .alert-message.block-message.info
+    = "設定した住所から半径300m圏内にある店舗がランダムで通知されます。"
   .clearfix
     = f.label "住所"
     .input
