@@ -6,16 +6,16 @@
 .nav
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   .clearfix
-    = f.label :email
+    = f.label :email, "Emailアドレス"
     .input
       = f.email_field :email
   .clearfix
-    = f.label :password
+    = f.label :password, "パスワード"
     .input
       = f.password_field :password
   - if devise_mapping.rememberable?
     .clearfix
-      = f.label :remember_me
+      = f.label :remember_me, "ログイン情報の保存"
       .input
         = f.check_box :remember_me
   .actions
