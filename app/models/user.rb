@@ -29,16 +29,10 @@ class User < ActiveRecord::Base
         Notifier.deliver_notice_email(np)
         logger.info "[Mail] send email to #{np.email}"
       else
-        if rests.instance_of?(Array)
-          shop_count = rests.size
-          shop = rests[rand(shop_count)]
-        else
-          shop = rests
-        end
-
         notice_users = user.notice_points.sort_by{ rand }
         np_count_all = notice_users.size
         np_groups = []
+
         if np_count_all <= 5
           np_groups << notice_users
         elsif np_count_all == 8
@@ -52,6 +46,12 @@ class User < ActiveRecord::Base
         end
 
         np_groups.each do |np_group|
+          if rests.instance_of?(Array)
+            shop_count = rests.size
+            shop = rests[rand(shop_count)]
+          else
+            shop = rests
+          end
           members = np_group.map{ |member| member.name }.join(",")
           np_group.each do |np|
             Notifier.notice_email(np,shop,members)
