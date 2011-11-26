@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Notifier < ActionMailer::Base
-  default :from => "ランチメール"
+  default :from => "ランチメール <support@lunch.jp>"
 
   def notice_email(user,shop,members)
     subject = "New Notification for you."
