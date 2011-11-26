@@ -3,12 +3,12 @@ class Notifier < ActionMailer::Base
   default :from => "ランチメール <support@lunchmail.jp>"
 
   def notice_email(user,shop,members)
-    subject = "本日のオススメ店＆ランチメンバー"
+    subject = "☆本日のオススメ店＆ランチメンバー☆"
     body =  <<"LUNCHMAIL"
 ＜本日のオススメ店＞
 #{shop.name}
 
-＜メンバー＞
+＜ランチメンバー＞
 #{members}
 
 ＜店舗URL＞
