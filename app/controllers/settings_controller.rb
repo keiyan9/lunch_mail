@@ -24,7 +24,7 @@ class SettingsController < ApplicationController
 
   # GET /settings/1/edit
   def edit
-    @setting = Setting.find(params[:id])
+    @setting = current_user.setting
   end
 
   # POST /settings
@@ -48,7 +48,7 @@ class SettingsController < ApplicationController
   # PUT /settings/1
   # PUT /settings/1.xml
   def update
-    @setting = Setting.find(params[:id])
+    @setting = current_user.setting
 
     respond_to do |format|
       if @setting.update_attributes(params[:setting])

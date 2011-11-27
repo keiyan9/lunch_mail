@@ -7,7 +7,7 @@
     %th 通知先
     %th
 
-  - current_user.notice_points.each do |np|
+  - @notice_points.each do |np|
     %tr
       %td
         = np.name

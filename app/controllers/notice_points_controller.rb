@@ -3,6 +3,7 @@ class NoticePointsController < ApplicationController
 
   def index
     @setting = current_user.setting
+    @notice_points = current_user.notice_points
   end
 
   def new
