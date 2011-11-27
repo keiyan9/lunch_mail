@@ -15,8 +15,16 @@ class NoticePointsController < ApplicationController
     @setting = current_user.setting
     @notice_point = NoticePoint.new(params[:notice_point])
     @notice_point.user_id = current_user.id
-    @notice_point.save
-    redirect_to setting_notice_points_path(@setting), :notice => '通知先が追加されました。'
+
+    respond_to do |format|
+      if @notice_point.save
+        format.html { redirect_to setting_notice_points_path(@setting), :notice => '通知先が追加されました。' }
+      else
+        format.html { render :action => "new"}
+      end
+    end
+
+
   end
 
   def destroy
