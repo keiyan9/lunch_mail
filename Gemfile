@@ -7,6 +7,7 @@ gem 'rails', '3.0.10'
 
 gem 'sqlite3'
 
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 # Use unicorn as the web server
 # gem 'unicorn'
 
