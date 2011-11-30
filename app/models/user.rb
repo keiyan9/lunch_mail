@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
       day = Time.now
       response_gnavi.response.rest.delete_if{ |rest| rest.holiday == WDAYS[day.wday] }
+      response_gnavi.response.rest.delete_if{ |rest| rest.opentime == nil }
 
       rests = response_gnavi.response.rest.select{ |rest| rest.opentime.include?("11:00") || rest.opentime.include?("11:25") || rest.opentime.include?("11:30") || rest.opentime.include?("12:00")}
 
