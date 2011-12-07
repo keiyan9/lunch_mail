@@ -11,6 +11,11 @@ class NoticePointsController < ApplicationController
     @notice_point = NoticePoint.new
   end
 
+  def edit
+    @setting = current_user.setting
+    @notice_point = current_user.notice_points.find(params[:id])
+  end
+
   def create
     @setting = current_user.setting
     @notice_point = NoticePoint.new(params[:notice_point])
@@ -23,8 +28,19 @@ class NoticePointsController < ApplicationController
         format.html { render :action => "new"}
       end
     end
+  end
 
+  def update
+    @setting = current_user.setting
+    @notice_point = current_user.notice_points.find(params[:id])
 
+    respond_to do |format|
+      if @notice_point.update_attributes(params[:notice_point])
+        format.html { redirect_to setting_notice_points_path(@setting), :notice => '通知先が変更されました。'}
+      else
+        format.html { render :action => "edit"}
+      end
+    end
   end
 
   def destroy
