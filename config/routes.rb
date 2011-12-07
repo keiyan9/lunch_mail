@@ -3,7 +3,7 @@ LunchMail::Application.routes.draw do
     resources :notice_points
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resource :kicks, :only => %w() do
     member do

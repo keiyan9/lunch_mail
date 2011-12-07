@@ -8,6 +8,7 @@ gem 'rails', '3.0.10'
 gem 'sqlite3'
 
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -45,8 +46,10 @@ group :development do
 end
 
 gem "devise"
+gem 'omniauth'
+gem "omniauth-facebook"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "httparty"
-gem "hashie"
+gem "hashie", '~> 1.2'

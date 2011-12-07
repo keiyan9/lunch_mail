@@ -11,7 +11,7 @@
         .container
           %a.brand{:href => "/"} Lunch Mail
           %ul.nav.secondary-nav
-            -if current_user && current_user.setting && @setting
+            - if current_user && current_user.setting && @setting
               %li
                 = link_to '通知先管理', setting_notice_points_path(@setting)
               %li.menu

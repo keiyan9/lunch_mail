@@ -14,6 +14,6 @@
       %td
         = np.email    
       %td
-        = link_to "削除", setting_notice_point_path(@setting, np), :confirm => '削除します。よろしいですか？', :method => :delete
+        = link_to "通知先の削除", setting_notice_point_path(@setting, np), :confirm => '削除します。よろしいですか？', :method => :delete
 %br
 = link_to "通知先の追加", new_setting_notice_point_path
