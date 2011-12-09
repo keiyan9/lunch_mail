@@ -26,10 +26,13 @@ class User < ActiveRecord::Base
       rests = response_gnavi.response.rest.select{ |rest| rest.opentime.include?("11:00") || rest.opentime.include?("11:25") || rest.opentime.include?("11:30") || rest.opentime.include?("12:00")}
 
       if rests.empty?
-        np = user.notice_points
-        Notifier.notice_email(np)
-        Notifier.deliver_notice_email(np)
-        logger.info "[Mail] send email to #{np.email}"
+        shop = "empty"
+        np_group = user.notice_points
+        np_group.each do |np|
+          Notifier.notice_email(np,shop)
+          Notifier.deliver_notice_email(np,shop)
+          logger.info "[Mail] send email to #{np.email}"
+        end
       else
         notice_users = user.notice_points.sort_by{ rand }
         np_count_all = notice_users.size
