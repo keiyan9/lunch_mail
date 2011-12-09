@@ -3,7 +3,7 @@ class Notifier < ActionMailer::Base
   default :from => "ランチメール <support@lunchmail.jp>"
 
   def notice_email(user,shop=nil,members=nil)
-    if shop == nil
+    if shop == "empty"
       subject = "ご報告"
       body = "本日ランチ営業している店舗は、付近で見つかりませんでした"
     else
