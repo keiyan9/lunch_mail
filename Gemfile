@@ -53,3 +53,7 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "httparty"
 gem "hashie", '~> 1.2'
+
+group :production do
+  gem 'rack-ssl', :require => 'rack/ssl'
+end
