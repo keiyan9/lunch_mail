@@ -69,8 +69,16 @@ class User < ActiveRecord::Base
   end
 
   def self.select_target_users
+    self.select{|user| user.target_active? && user.target_time?}
+  end
+
+  def target_active?
+    self.setting.active
+  end
+
+  def target_time?
     current_time = Time.local(2011,1,1,Time.now.hour,Time.now.min,Time.now.sec)
-    self.select{|user| user.setting.active == true && user.setting.notice_at >= current_time-7.second && user.setting.notice_at < current_time+8.second}
+    self.setting.notice_at >= current_time-7.second && self.setting.notice_at < current_time+8.second ? true : false
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

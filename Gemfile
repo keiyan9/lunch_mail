@@ -32,17 +32,22 @@ gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_e
 #   gem 'webrat'
 # end
 group :test do
-  gem "capybara", :group => [:development, :test]
-  gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
   gem "cucumber-rails"
 end
 
 group :development, :test do
-  gem 'web-app-theme', '~> 0.6.2'
+  gem "rspec-rails", ">= 2.0.1"
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'factory_girl_rails', "~> 1.2"
+  gem "capybara"
 end
 
 group :development do
   gem 'erb2haml'
+end
+
+group :production do
+  gem 'rack-ssl', :require => 'rack/ssl'
 end
 
 gem "devise"
@@ -54,6 +59,3 @@ gem "jquery-rails"
 gem "httparty"
 gem "hashie", '~> 1.2'
 
-group :production do
-  gem 'rack-ssl', :require => 'rack/ssl'
-end
