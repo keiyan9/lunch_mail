@@ -23,7 +23,7 @@ class NoticePointsController < ApplicationController
 
     respond_to do |format|
       if @notice_point.save
-        format.html { redirect_to setting_notice_points_path(@setting), :notice => '通知先が追加されました。' }
+        format.html { redirect_to setting_notice_points_path(@setting), :notice => 'メンバーが追加されました。' }
       else
         format.html { render :action => "new"}
       end
@@ -36,7 +36,7 @@ class NoticePointsController < ApplicationController
 
     respond_to do |format|
       if @notice_point.update_attributes(params[:notice_point])
-        format.html { redirect_to setting_notice_points_path(@setting), :notice => '通知先が変更されました。'}
+        format.html { redirect_to setting_notice_points_path(@setting), :notice => '登録内容が変更されました。'}
       else
         format.html { render :action => "edit"}
       end
@@ -49,7 +49,7 @@ class NoticePointsController < ApplicationController
     @notice_point.destroy
 
     respond_to do |format|
-      format.html { redirect_to setting_notice_points_path(@setting), :notice => '通知先が削除されました。'}
+      format.html { redirect_to setting_notice_points_path(@setting), :notice => 'メンバーから外しました。'}
     end
   end
 end

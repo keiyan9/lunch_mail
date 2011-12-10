@@ -1,5 +1,5 @@
 .page-header
-  %h1 通知先一覧
+  %h1 ランチメンバー
 
 %table.bordered-table
   %tr
@@ -14,8 +14,8 @@
       %td
         = np.email    
       %td
-        = link_to "通知先の編集", edit_setting_notice_point_path(@setting, np)
+        = link_to "登録内容を変更する", edit_setting_notice_point_path(@setting, np)
         |
-        = link_to "通知先の削除", setting_notice_point_path(@setting, np), :confirm => '削除します。よろしいですか？', :method => :delete
+        = link_to "メンバーから外す", setting_notice_point_path(@setting, np), :confirm => 'メンバーから外します。よろしいですか？', :method => :delete
 %br
-= link_to "通知先の追加", new_setting_notice_point_path
+= link_to "メンバーの追加", new_setting_notice_point_path

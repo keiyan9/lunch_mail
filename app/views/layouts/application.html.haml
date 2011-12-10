@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Lunch Mail
+    %title ランチメール
     = stylesheet_link_tag %w(application bootstrap.min)
     = javascript_include_tag :all, :cache => false
     = csrf_meta_tag
@@ -9,11 +9,11 @@
     .topbar{"data-scrollspy" => "scrollspy", "data-dropdown" => "dropdown"}
       .topbar-inner
         .container
-          %a.brand{:href => "/"} Lunch Mail
+          %a.brand{:href => "/"} ランチメール
           %ul.nav.secondary-nav
             - if current_user && current_user.setting && @setting
               %li
-                = link_to '通知先管理', setting_notice_points_path(@setting)
+                = link_to 'メンバー管理', setting_notice_points_path(@setting)
               %li.menu
                 %a.menu{:href => "#"}= current_user.email
                 %ul.menu-dropdown
