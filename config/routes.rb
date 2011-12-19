@@ -1,4 +1,7 @@
 LunchMail::Application.routes.draw do
+  get "home/case"
+  get "home/faq"
+
   resources :settings do
     resources :notice_points
   end
@@ -60,7 +63,7 @@ LunchMail::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "settings#show"
+  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

@@ -10,6 +10,14 @@
       .topbar-inner
         .container
           %a.brand{:href => "/"} ランチメール
+          - unless user_signed_in?
+            %ul.nav
+              %li
+                = link_to "Home", root_path
+              %li
+                = link_to "使い方"
+              %li
+                = link_to "FAQ"
           %ul.nav.secondary-nav
             - if current_user && current_user.setting && @setting
               %li
@@ -20,10 +28,14 @@
                   %li= link_to "ユーザ登録情報変更", edit_user_registration_path
                   %li.divider
                   %li= link_to 'ログアウト', destroy_user_session_path, :method => :delete
+            - else
+              %li
+                = link_to 'ログイン', new_user_session_path
+              %li
+                = link_to 'ユーザ登録', new_user_registration_path
     .container-fluid
-      .flash
-        - flash.each do |type, message|
-          %div{:class => "message #{type}"}
-            %p= message
       .content
         = yield
+        %footer
+          %p
+            © Company 2011

@@ -1,8 +1,5 @@
 .page-header
   %h1 ログイン
-.alert-message.block-message.info
-  = "会社勤めの方がランチに行く時の悩みの種（！？）が、「誰と行くか」と「どこに行くか」。その２つを解決できるのが、「ランチメール」アプリ。昼頃の指定した時間になると、一緒にランチに行くメンバーの名前と、近所のおすすめ店がメンバー全員にメールで通知されます。"
-
 .nav
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   .clearfix
@@ -21,6 +18,3 @@
   .actions
     = f.submit "ログイン", :class => "btn primary"
 = render :partial => "devise/shared/links"
-%br
-注：当サービスは開発途中のベータ版です。セキュリティ対応等は不十分であることをご確認の上、ご自身の責任でご利用ください。
-また、事前の予告なく、仕様変更やサービスを停止する可能性がありますことをご了承ください。
