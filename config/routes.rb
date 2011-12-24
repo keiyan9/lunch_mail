@@ -1,6 +1,6 @@
 LunchMail::Application.routes.draw do
   get "home/case"
-  get "home/faq"
+  get "home/feature"
 
   resources :settings do
     resources :notice_points

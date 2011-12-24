@@ -15,9 +15,9 @@
               %li
                 = link_to "Home", root_path
               %li
-                = link_to "使い方"
+                = link_to "特徴", home_feature_path
               %li
-                = link_to "FAQ"
+                = link_to "使い方", home_case_path
           %ul.nav.secondary-nav
             - if current_user && current_user.setting && @setting
               %li
@@ -36,6 +36,6 @@
     .container-fluid
       .content
         = yield
-        %footer
-          %p
-            © Company 2011
+      %footer
+        %p
+          © Company 2011
