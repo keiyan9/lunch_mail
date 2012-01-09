@@ -11,14 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102010604) do
+ActiveRecord::Schema.define(:version => 20120109130630) do
 
-  create_table "notice_points", :force => true do |t|
-    t.string   "email"
-    t.integer  "user_id"
+  create_table "groups", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
 
   create_table "settings", :force => true do |t|
@@ -27,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20111102010604) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "active"
   end
 
   create_table "users", :force => true do |t|
@@ -43,6 +40,10 @@ ActiveRecord::Schema.define(:version => 20111102010604) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id"
+    t.boolean  "active"
+    t.string   "name"
+    t.string   "roll"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
