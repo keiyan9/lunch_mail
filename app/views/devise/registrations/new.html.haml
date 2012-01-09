@@ -3,6 +3,10 @@
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
   .clearfix
+    = f.label :name, "名前"
+    .input
+    = f.text_field :name
+  .clearfix
     = f.label :email, "E-mailアドレス"
     .input
     = f.email_field :email

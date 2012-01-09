@@ -1,4 +1,4 @@
-= form_for @setting do |f|
+= form_for [@group, @setting] do |f|
   - if @setting.errors.any?
     #error_explanation
       %h2= "#{pluralize(@setting.errors.count, "error")} prohibited this setting from being saved:"
@@ -15,12 +15,5 @@
     = f.label "通知時刻"
     .input
       = f.datetime_select :notice_at, :discard_year => true, :discard_month => true, :discard_day => true, :minute_step => 10
-  .clearfix
-    = f.label "通知"
-    .input
-      - if @setting.active == nil
-        = f.check_box :active, :checked => true
-      - else
-        = f.check_box :active
   .actions
     = f.submit :class => "btn primary"

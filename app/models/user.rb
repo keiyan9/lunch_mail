@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
-  has_one :setting, :dependent => :destroy
-  has_many :notice_points, :dependent => :destroy
+  belongs_to :group
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,8 +8,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
+  validates_presence_of :name
 
   WDAYS = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"].freeze
 

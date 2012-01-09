@@ -1,0 +1,24 @@
+.page-header
+  %h1 ランチメンバー
+
+%table.bordered-table
+  %tr
+    %th 名前
+    %th 通知先
+    %th 権限
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td
+        = user.name
+      %td
+        = user.email
+      %td
+        = user.roll
+      %td
+        = link_to "登録内容を変更する", edit_group_user_path(@group, user)
+        |
+        = link_to "メンバーから外す", group_user_path(@group, user), :confirm => 'メンバーから外します。よろしいですか？', :method => :delete
+%br
+= link_to "メンバーの追加", new_group_user_path

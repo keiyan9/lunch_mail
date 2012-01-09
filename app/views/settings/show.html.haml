@@ -18,9 +18,5 @@
       通知時刻
     %td
       = @setting.notice_at.strftime("%H:%M")
-  %tr
-    %td
-      通知
-    %td
-      = @setting.active ? "通知されます" : "通知されません"
-= link_to '登録内容を変更する', edit_setting_path(@setting)
+
+= link_to '登録内容を変更する', edit_group_setting_path(@group, @setting)

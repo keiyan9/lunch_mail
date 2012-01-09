@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 class SettingsController < ApplicationController
+  before_filter :load_group
 
   # GET /settings/1
   # GET /settings/1.xml
   def show
-    if current_user.setting
-      @setting = current_user.setting
+    if current_user.group.setting
+      @setting = current_user.group.setting
     else
       redirect_to new_setting_path
     end
@@ -24,40 +25,31 @@ class SettingsController < ApplicationController
 
   # GET /settings/1/edit
   def edit
-    @setting = current_user.setting
+    @setting = current_user.group.setting
   end
 
   # POST /settings
   # POST /settings.xml
   def create
-    @setting = Setting.new(params[:setting])
-    @setting.user_id = current_user.id
+    @setting = @group.build_setting(params[:setting])
     @setting.notice_at = Time.local(2011,1,1,params[:setting][:"notice_at(4i)"], params[:setting][:"notice_at(5i)"])
 
-    respond_to do |format|
-      if @setting.save
-        format.html { redirect_to(@setting, :notice => '登録が完了しました。') }
-        format.xml  { render :xml => @setting, :status => :created, :location => @setting }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @setting.errors, :status => :unprocessable_entity }
-      end
+    if @setting.save
+      redirect_to group_setting_path(@group, @setting), :notice => '登録が完了しました。'
+    else
+      render :action => "new"
     end
   end
 
   # PUT /settings/1
   # PUT /settings/1.xml
   def update
-    @setting = current_user.setting
+    @setting = current_user.group.setting
 
-    respond_to do |format|
-      if @setting.update_attributes(params[:setting])
-        format.html { redirect_to(@setting, :notice => '登録情報が更新されました。') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @setting.errors, :status => :unprocessable_entity }
-      end
+    if @setting.update_attributes(params[:setting])
+      redirect_to group_setting_path(@group, @setting), :notice => '登録情報が更新されました。'
+    else
+      render :action => "edit"
     end
   end
 

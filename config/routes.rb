@@ -1,16 +1,17 @@
 LunchMail::Application.routes.draw do
+
+  get "home/index"
   get "home/case"
   get "home/feature"
 
-  resources :settings do
-    resources :notice_points
-  end
-
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-
-  resource :kicks, :only => %w() do
-    member do
-      get 'execute'
+  resources :groups do
+    resources :settings
+    resources :users
+    resource :kicks, :only => %w() do
+      member do
+        get 'execute'
+      end
     end
   end
 

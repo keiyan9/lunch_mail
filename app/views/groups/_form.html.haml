@@ -1,0 +1,26 @@
+= form_for @group do |f|
+  - if @group.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@group.errors.count, "error")} prohibited this setting from being saved:"
+      %ul
+        - @group.errors.full_messages.each do |msg|
+          %li= msg
+  .clearfix
+    = f.label "グループ名"
+    .input
+      = f.text_field :name
+  = f.fields_for :users do |user_f|
+    .clearfix
+      = user_f.label "名前"
+      .input
+        = user_f.text_field :name
+    .clearfix
+      = user_f.label "メールアドレス"
+      .input
+        = user_f.email_field :email
+    .clearfix
+      = user_f.label "パスワード"
+      .input
+        = user_f.password_field :password
+  .actions
+    = f.submit "新規登録", :class => "btn primary"

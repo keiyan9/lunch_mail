@@ -3,4 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
 
+private
+  def load_group
+    @group = current_user.group
+  end
 end
