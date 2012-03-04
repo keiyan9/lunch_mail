@@ -20,9 +20,3 @@ body {
 .index_width {
   width: 350px;
 }
-
-.alert {
-  text-align: center;
-  padding: 12px;
-  background-color: lightyellow;
-}

@@ -22,7 +22,7 @@
                   %li= link_to 'ログアウト', destroy_user_session_path, :method => :delete
     .container-fluid
       - flash.each do |type, message|
-        %div.alert
+        %div.alert-message
           %p= message
       .content
         = yield
