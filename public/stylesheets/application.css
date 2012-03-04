@@ -22,5 +22,6 @@ body {
 }
 
 .notice-btn {
-  text-align: center
+  text-align: center;
+  width: 130px;
 }

@@ -4,8 +4,6 @@ class Group < ActiveRecord::Base
   has_one :setting
   accepts_nested_attributes_for :setting
 
-  validates_presence_of :name
-
   WDAYS = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"].freeze
 
   def self.send_notifications

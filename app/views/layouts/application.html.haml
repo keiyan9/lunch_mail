@@ -9,7 +9,11 @@
     .topbar{"data-scrollspy" => "scrollspy", "data-dropdown" => "dropdown"}
       .topbar-inner
         .container
-          %a.brand{:href => "/"} ランチメール
+          %a.brand{:href => "/"}
+            - if @group && @group.name.present?
+              = "ランチメール - #{@group.name}"
+            - else
+              ランチメール
           %ul.nav.secondary-nav
             - if current_user && current_user.group
               %li
