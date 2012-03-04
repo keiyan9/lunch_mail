@@ -16,6 +16,9 @@ class GroupsController < ApplicationController
   end
 
   def create
+    params[:group][:setting_attributes]["notice_at(1i)"] = "2011"
+    params[:group][:setting_attributes]["notice_at(2i)"] = "1"
+    params[:group][:setting_attributes]["notice_at(3i)"] = "1"
     @group = Group.new(params[:group])
     if @group.save
       current_user.group = @group
