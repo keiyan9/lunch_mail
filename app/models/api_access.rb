@@ -30,8 +30,8 @@ private
     "http://www.geocoding.jp/api/"
   end
 
-  def self.get_response_by_user(user)
-    response_geo = self.geo_api_get({:q => user.setting.area})
+  def self.get_response_by_group(group)
+    response_geo = self.geo_api_get({:q => group.setting.area})
     self.gnavi_api_get({:keyid => "dd0f3c4c27d1f6b371cd99acbebe97fb", :latitude => response_geo.result.coordinate.lat, :longitude => response_geo.result.coordinate.lng, :range => 1, :hit_per_page => 999, :input_coordinates_mode => 2}).response.rest
   end
 end

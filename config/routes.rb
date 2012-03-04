@@ -1,6 +1,6 @@
 LunchMail::Application.routes.draw do
-  resources :settings do
-    resources :notice_points
+  resources :groups do
+    resources :users
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -60,7 +60,7 @@ LunchMail::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "settings#show"
+  root :to => "groups#show"
 
   # See how all your routes lay out with "rake routes"
 

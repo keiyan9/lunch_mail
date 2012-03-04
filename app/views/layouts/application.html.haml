@@ -11,9 +11,9 @@
         .container
           %a.brand{:href => "/"} ランチメール
           %ul.nav.secondary-nav
-            - if current_user && current_user.setting && @setting
+            - if current_user && current_user.group
               %li
-                = link_to 'メンバー管理', setting_notice_points_path(@setting)
+                = link_to 'メンバー管理', group_users_path(@group)
               %li.menu
                 %a.menu{:href => "#"}= current_user.email
                 %ul.menu-dropdown
