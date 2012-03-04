@@ -1,4 +1,6 @@
 .page-header
   %h1 登録情報の編集
 
+%p= link_to "<< ホームへ戻る", group_path(@group)
+
 = render :partial => "form"

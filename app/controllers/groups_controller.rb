@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class GroupsController < ApplicationController
   skip_before_filter :load_group, :only => ["new", "create"]
 
@@ -19,7 +20,7 @@ class GroupsController < ApplicationController
     if @group.save
       current_user.group = @group
       current_user.save
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), :notice => "登録が完了しました。"
     else
       render :action => "new"
     end
@@ -27,7 +28,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update_attributes(params[:group])
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), :notice => "登録情報を更新しました。"
     else
       render :action => "edit"
     end

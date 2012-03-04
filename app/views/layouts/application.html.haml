@@ -21,9 +21,8 @@
                   %li.divider
                   %li= link_to 'ログアウト', destroy_user_session_path, :method => :delete
     .container-fluid
-      .flash
-        - flash.each do |type, message|
-          %div{:class => "message #{type}"}
-            %p= message
+      - flash.each do |type, message|
+        %div.alert
+          %p= message
       .content
         = yield

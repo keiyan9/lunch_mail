@@ -10,12 +10,8 @@
     .input
       = f.text_field :name
   .clearfix
-    = f.label :email, "E-mailアドレス"
+    = f.label :email, "通知先メールアドレス"
     .input
       = f.email_field :email
-  .clearfix
-    = f.label :active, "通知"
-    .input
-      = f.check_box :active
   .actions
     = f.submit "メンバー登録", :class => "btn primary"
