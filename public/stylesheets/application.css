@@ -20,3 +20,7 @@ body {
 .index_width {
   width: 350px;
 }
+
+.notice-btn {
+  text-align: center
+}

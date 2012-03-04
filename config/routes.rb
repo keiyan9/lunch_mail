@@ -1,6 +1,10 @@
 LunchMail::Application.routes.draw do
   resources :groups do
-    resources :users
+    resources :users do
+      member do
+        get :notice
+      end
+    end
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

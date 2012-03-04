@@ -38,4 +38,13 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to group_users_path(@group), :notice => "登録を解除しました。"
   end
+
+  def notice
+    @user = @group.users.find(params[:id])
+    @user.active = params[:status]
+    @user.save
+    respond_to do |format|
+      format.js { render "notice"}
+    end
+  end
 end

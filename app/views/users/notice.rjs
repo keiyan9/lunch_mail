@@ -1,0 +1,1 @@
+page["#notice-user-#{@user.id}"].replaceWith(notice_td_content(@user))

@@ -3,19 +3,19 @@
 
 %table.bordered-table
   %tr
+    %th
     %th 名前
     %th 通知先メールアドレス
-    %th 通知状態
     %th
 
   - @users.each do |user|
     %tr
+      %td.notice-btn
+        = notice_td_content(user)
       %td
         = user.name
       %td
         = user.email
-      %td
-        = user.active
       %td
         = link_to "登録内容を変更する", edit_group_user_path(@group, user)
         |
