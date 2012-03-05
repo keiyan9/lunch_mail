@@ -23,4 +23,12 @@ LUNCHMAIL
     mail(:to => user.email, :subject => subject, :body => body)
   end
 
+  def error_email(user, error)
+    if error == "001"
+      subject = "ご報告"
+      body =  "不正な住所が登録されています"
+      mail(:to => user.email, :subject => subject, :body => body)
+    end
+  end
+
 end

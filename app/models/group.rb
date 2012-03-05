@@ -8,31 +8,44 @@ class Group < ActiveRecord::Base
 
   def self.send_notifications
     self.select_target_groups.each do |group|
-      response_rests = ApiAccess.get_response_by_group(group)
-
-      day = Time.now
-      response_rests.delete_if{ |rest| rest.holiday == WDAYS[day.wday] }
-
-      response_rests.delete_if{ |rest| rest.opentime == nil }
-      rests = response_rests.select{ |rest| rest.opentime.include?("11:00") || rest.opentime.include?("11:25") || rest.opentime.include?("11:30") || rest.opentime.include?("12:00")}
-
-      if rests.empty?
-        shop = "empty"
+      response_geo = ApiAccess.geo_api_get({:q => group.setting.area})
+      until response_geo.result.error != "003"
+        response_geo = ApiAccess.geo_api_get({:q => group.setting.area})
+      end
+      if response_geo.result.error == "001"
         np_users = group.active_users
         np_users.each do |user|
-          Notifier.notice_email(user,shop)
-          Notifier.deliver_notice_email(user,shop)
+          Notifier.error_email(user, response_geo.result.error)
+          Notifier.deliver_error_email(user, response_geo.result.error)
           logger.info "[Mail] send email to #{user.email}"
         end
       else
-        np_user_groups = group.divide_groups
-        np_user_groups.each do |np_user_group|
-          shop = rests.instance_of?(Array) ? rests[rand(rests.size)] : rests
-          members = np_user_group.map{ |member| member.name }.join(",")
-          np_user_group.each do |user|
-            Notifier.notice_email(user,shop,members)
-            Notifier.deliver_notice_email(user,shop,members)
+        response_rests = ApiAccess.get_response_by_group(group, response_geo.result.coordinate)
+
+        day = Time.now
+        response_rests.delete_if{ |rest| rest.holiday == WDAYS[day.wday] }
+
+        response_rests.delete_if{ |rest| rest.opentime == nil }
+        rests = response_rests.select{ |rest| rest.opentime.include?("11:00") || rest.opentime.include?("11:25") || rest.opentime.include?("11:30") || rest.opentime.include?("12:00")}
+
+        if rests.empty?
+          shop = "empty"
+          np_users = group.active_users
+          np_users.each do |user|
+            Notifier.notice_email(user,shop)
+            Notifier.deliver_notice_email(user,shop)
             logger.info "[Mail] send email to #{user.email}"
+          end
+        else
+          np_user_groups = group.divide_groups
+          np_user_groups.each do |np_user_group|
+            shop = rests.instance_of?(Array) ? rests[rand(rests.size)] : rests
+            members = np_user_group.map{ |member| member.name }.join(",")
+            np_user_group.each do |user|
+              Notifier.notice_email(user,shop,members)
+              Notifier.deliver_notice_email(user,shop,members)
+              logger.info "[Mail] send email to #{user.email}"
+            end
           end
         end
       end
