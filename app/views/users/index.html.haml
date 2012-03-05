@@ -17,7 +17,8 @@
       %td
         = user.email
       %td
-        = link_to "登録内容を変更する", edit_group_user_path(@group, user)
-        |
-        = link_to "登録を解除する", group_user_path(@group, user), :confirm => '登録を解除します。よろしいですか？', :method => :delete
-= link_to "メンバーの登録", new_group_user_path
+        - if user != current_user
+          = link_to "登録内容を変更する", edit_group_user_path(@group, user)
+          |
+          = link_to "登録を解除する", group_user_path(@group, user), :confirm => '登録を解除します。よろしいですか？', :method => :delete
+= link_to "メンバーの登録", new_group_user_path, :disabled => true
