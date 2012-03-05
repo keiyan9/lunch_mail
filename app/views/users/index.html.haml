@@ -1,17 +1,20 @@
 .page-header
   %h1 ランチメンバー
 
-%table.bordered-table
+%table.bordered-table.zebra-striped
   %tr
     %th
+    %th No.
     %th 名前
     %th 通知先メールアドレス
     %th
 
-  - @users.each do |user|
+  - @users.each_with_index do |user,i|
     %tr
       %td.notice-btn
         = notice_td_content(user)
+      %td
+        = i + 1
       %td
         = user.name
       %td
