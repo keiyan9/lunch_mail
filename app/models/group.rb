@@ -17,7 +17,7 @@ class Group < ActiveRecord::Base
         np_users.each do |user|
           Notifier.error_email(user, response_geo.result.error)
           Notifier.deliver_error_email(user, response_geo.result.error)
-          logger.info "[Mail] send email to #{user.email}"
+          Rails.logger.info "[Mail] send email to #{user.email}"
         end
       else
         response_rests = ApiAccess.get_response_by_group(group, response_geo.result.coordinate)
@@ -34,7 +34,7 @@ class Group < ActiveRecord::Base
           np_users.each do |user|
             Notifier.notice_email(user,shop)
             Notifier.deliver_notice_email(user,shop)
-            logger.info "[Mail] send email to #{user.email}"
+            Rails.logger.info "[Mail] send email to #{user.email}"
           end
         else
           np_user_groups = group.divide_groups
@@ -42,9 +42,13 @@ class Group < ActiveRecord::Base
             shop = rests.instance_of?(Array) ? rests[rand(rests.size)] : rests
             members = np_user_group.map{ |member| member.name }.join(",")
             np_user_group.each do |user|
-              Notifier.notice_email(user,shop,members)
-              Notifier.deliver_notice_email(user,shop,members)
-              logger.info "[Mail] send email to #{user.email}"
+              begin
+                Notifier.notice_email(user,shop,members)
+                Notifier.deliver_notice_email(user,shop,members)
+                Rails.logger.info "[Mail] send email to #{user.email}"
+              rescue => e
+                Rails.logger.error "Error: #{e}"
+              end
             end
           end
         end
