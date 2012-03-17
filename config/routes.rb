@@ -1,5 +1,6 @@
 LunchMail::Application.routes.draw do
   resources :groups do
+    get :notice_all
     resources :users do
       member do
         get :notice

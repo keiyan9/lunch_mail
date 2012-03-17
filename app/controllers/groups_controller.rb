@@ -36,4 +36,14 @@ class GroupsController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def notice_all
+    @group.users.each do |user|
+      user.active = params[:status]
+      user.save
+    end
+    respond_to do |format|
+      format.js { render "notice_all" }
+    end
+  end
 end

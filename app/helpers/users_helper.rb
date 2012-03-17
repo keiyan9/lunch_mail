@@ -9,4 +9,14 @@ module UsersHelper
       end
     end
   end
+
+  def notice_th_content
+    content_tag(:div, :id => "notice-all-user") do
+      if @group.users.select{ |user| user.active == false }.any?
+        link_to "通知する", group_notice_all_path(@group, :status => "true"), :remote => true, :class => "btn mini"
+      else
+        link_to "通知中", group_notice_all_path(@group, :status => "false"), :remote => true, :class => "btn mini primary"
+      end
+    end
+  end
 end
