@@ -20,6 +20,8 @@ private
     else
       logger.info "[Unexpected status] ResponseCode:#{response.code} Detail:#{response.inspect}"
     end
+  rescue Timeout::Error, StandardError => e
+    Rails.logger.error "Error: #{e}"
   end
 
   def self.gnavi_original_url
