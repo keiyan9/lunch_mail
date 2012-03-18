@@ -45,7 +45,7 @@ class Group < ActiveRecord::Base
               begin
                 Notifier.notice_email(user,shop,members)
                 Notifier.deliver_notice_email(user,shop,members)
-                Rails.logger.info "[Mail] send email to #{user.email}, shop:#{shop}, member:#{members}"
+                Rails.logger.info "[Mail] send email to #{user.email}, shop:#{shop.name}, member:#{members}"
               rescue => e
                 Rails.logger.error "Error: #{e}"
               end
